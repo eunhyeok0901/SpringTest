@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3.0.dtd">
+
+<!-- Tiles 설정 -->
+<tiles-definitions>
+	<!-- mainTemplate 설정
+		template 속성은 이 템플릿이 무엇인지를 말해줌.
+	-->
+	<definition name="mainTemplate" template="/WEB-INF/views/mainTemplate.jsp">
+		<put-attribute name="preloader" value="/WEB-INF/views/tiles/preloader.jsp"/>
+		<put-attribute name="navHeader" value="/WEB-INF/views/tiles/navHeader.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp"/>
+		<put-attribute name="sidebar" value="/WEB-INF/views/tiles/sidebar.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<!-- 이제는 content 영역만 바뀔 수 있도록 설정해주자.
+		우리가 만들어놓은 컨트롤러메소드의 리턴값이 여기와 매핑된다.
+		뷰 리졸버보다 타일즈가 먼저 잡는다.
+	-->
+	<definition name="bootstrap/*" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/bootstrap/{1}.jsp"/>
+	</definition>
+	
+	
+	
+	
+    <definition name="pageTemplate" template="/WEB-INF/views/pageTemplate.jsp">
+ 		<put-attribute name="preloader" value="/WEB-INF/views/tiles/preloader.jsp"/>   
+	</definition>
+	
+	<definition name="page/*" extends="pageTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/page/{1}.jsp"/>
+	</definition>
+   
+</tiles-definitions>
